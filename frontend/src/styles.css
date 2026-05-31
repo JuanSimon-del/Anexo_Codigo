@@ -1,0 +1,165 @@
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Elms Sans", sans-serif;
+  background-color: #2e2e2e;
+  color: white;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* prevent body scroll, use .app-content instead */
+}
+
+.navbar {
+  background-color: black;
+  z-index: 1100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.app-content {
+  margin-top: 56px; /* height of navbar */
+  height: calc(100vh - 56px);
+  overflow-y: auto; /* single page scrollbar */
+}
+
+.informe-content {
+  margin-left: 25%; /* leave space for fixed sidebar */
+}
+
+.informe-main {
+  flex-grow: 1;
+}
+
+.sidebar-fixed {
+  position: fixed;
+  left: 0;
+  top: 56px; /* below navbar */
+  height: calc(100vh - 56px);
+  z-index: 1000;
+  width: 25%;
+  overflow: auto; /* allow sidebar internal scroll when content grows */
+}
+
+/* Truck animation inside sidebar */
+.sidebar-truck {
+  position: relative;
+  height: 80px;
+  overflow: hidden;
+  padding: 0 0.5rem;
+}
+
+.sidebar-truck .truck-img {
+  position: absolute;
+  top: 50%;
+  left: -25%;
+  transform: translateY(-50%) scaleX(1);
+  width: 64px;
+  will-change: transform, left;
+  animation: truck-move 6s linear infinite;
+}
+
+/* Move right while facing right, then flip and move left while facing left */
+@keyframes truck-move {
+  0% {
+    left: -25%;
+    transform: translateY(-50%) scaleX(1);
+  }
+  49.9% {
+    left: 100%;
+    transform: translateY(-50%) scaleX(1);
+  }
+  50% {
+    left: 100%;
+    transform: translateY(-50%) scaleX(-1);
+  }
+  100% {
+    left: -25%;
+    transform: translateY(-50%) scaleX(-1);
+  }
+}
+
+/* When the app shows the Informe (sidebar present), offset the footer and full-width content */
+.with-sidebar footer {
+  margin-left: 25%;
+}
+
+/* Ensure footer has no extra bottom margin and uses full width when no sidebar */
+.footer-fixed-width {
+  margin-bottom: 0;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  background-color: black;
+}
+
+.navbar {
+  background-color: black;
+}
+
+.navbar-Brand {
+  background-color: black;
+}
+
+.engranaje {
+  width: 80px;
+  height: 80px;
+}
+
+.etapa1 {
+  width: 300px;
+  height: 250px;
+}
+
+.etapa2 {
+  width: 300px;
+  height: 250px;
+}
+
+.etapa3 {
+  width: 300px;
+  height: 250px;
+}
+
+.etapa4 {
+  width: 300px;
+  height: 250px;
+}
+
+.input{
+  background-color: transparent;
+}
+
+.contenedor-informe-general{
+    background-color: rgba(0, 0, 0, 0.339);
+}
+
+.contorno{
+    width: 55px;
+    height: 60px;
+    background-color: rgb(67, 67, 67);
+}
+
+.relleno{
+    width: 40px;
+    height: 45px;
+    background-color: rgb(113, 112, 112);
+    font-weight: bold;
+}
+
+.cards,
+h4 {
+  color: white;
+  background-color: rgb(42, 37, 37);
+  padding: 5px;
+}
+
+i {
+  color: white;
+  background-color: transparent;
+}

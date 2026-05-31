@@ -1,0 +1,12 @@
+# Ignorar dependencias de Node.js (Frontend)
+node_modules/
+build/
+dist/
+
+# Ignorar archivos compilados de C# (Backend)
+bin/
+obj/
+.vs/
+
+# Otros archivos innecesarios
+.env
