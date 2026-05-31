@@ -64,6 +64,8 @@ namespace SimulacionTFI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -75,7 +77,7 @@ namespace SimulacionTFI
             app.MapControllers();
             app.MapRazorPages();
 
-            app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+            app.MapFallbackToFile("index.html");
 
             app.Run();
         }
