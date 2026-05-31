@@ -1,5 +1,5 @@
 // Servicio para llamar a la API del backend
-const API_URL = "http://localhost:5000/api/simulation";
+const API_URL = "/api/simulation";
 
 export const runSimulation = async (totalCampaigns, workersPerStage) => {
   try {

@@ -64,7 +64,6 @@ namespace SimulacionTFI
             }
 
             app.UseHttpsRedirection();
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
