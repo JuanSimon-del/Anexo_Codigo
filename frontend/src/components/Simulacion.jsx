@@ -53,14 +53,14 @@ function Simulacion() {
           />
           <div>
             <img
-              src="../public/etapa1.png"
+              src="/imagenes/etapa1.png"
               alt="Etapa 1"
               className="etapa1 p-2"
             />
           </div>
           <div className="mt-auto">
             <img
-              src="../public/engranaje.png"
+              src="/imagenes/engranaje.png"
               className="engranaje"
               alt="Engranaje para visualizar el procesamiento en cada etapa"
             />
@@ -74,14 +74,14 @@ function Simulacion() {
           />
           <div>
             <img
-              src="../public/etapa2.png"
+              src="/imagenes/etapa2.png"
               alt="Etapa 2"
               className="etapa2 p-4"
             />
           </div>
           <div className="mt-auto">
             <img
-              src="../public/engranaje.png"
+              src="/imagenes/engranaje.png"
               className="engranaje mx-auto"
               alt="Engranaje para visualizar el procesamiento en cada etapa"
             />
@@ -95,14 +95,14 @@ function Simulacion() {
           />
           <div>
             <img
-              src="../public/etapa3.png"
+              src="/imagenes/etapa3.png"
               alt="Etapa 3"
               className="etapa3 p-3"
             />
           </div>
           <div className="mt-auto">
             <img
-              src="../public/engranaje.png"
+              src="/imagenes/engranaje.png"
               className="engranaje mx-auto"
               alt="Engranaje para visualizar el procesamiento en cada etapa"
             />
@@ -115,11 +115,11 @@ function Simulacion() {
             onChange={(val) => handleActualizarTrabajador(3, val)}
           />
           <div>
-            <img src="../public/etapa4.png" alt="Etapa 4" className="etapa4" />
+            <img src="/imagenes/etapa4.png" alt="Etapa 4" className="etapa4" />
           </div>
           <div className="mt-auto">
             <img
-              src="../public/engranaje.png"
+              src="/imagenes/engranaje.png"
               className="engranaje mx-auto"
               alt="Engranaje para visualizar el procesamiento en cada etapa"
             />

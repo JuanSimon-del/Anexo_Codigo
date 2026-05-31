@@ -33,7 +33,7 @@ function Footer() {
             <p className="mb-1">Paredi, Mario Luis</p>
             <p className="mb-0">Teri, María Eugenia</p>
           </div>
-          <img src="../public/utn-frt.png" alt="logo UTN" className="w-50 m-auto"/>
+          <img src="/imagenes/utn-frt.png" alt="logo UTN" className="w-50 m-auto"/>
           </Col>
         </Row>
       </Container>

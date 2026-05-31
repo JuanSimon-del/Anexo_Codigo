@@ -60,7 +60,7 @@ function SideBar({ campanas = 1, trabajadores = [2, 2, 2, 2], selectedCampaign =
           </article>
 
           <div className="sidebar-truck mt-3 d-flex align-items-center">
-            <img src="../public/camion.png" alt="Camión" className="truck-img" />
+            <img src="/imagenes/camion.png" alt="Camión" className="truck-img" />
           </div>
         </section>
       </Navbar>
