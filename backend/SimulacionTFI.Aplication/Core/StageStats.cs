@@ -11,6 +11,7 @@ namespace SimulacionTFI.Aplication.Core
     {
         public string StageName { get; set; }
         public int ProcessedCount { get; set; }
+        public int NotProcessedCount { get; set; }
         public int MaxQueueSize { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]

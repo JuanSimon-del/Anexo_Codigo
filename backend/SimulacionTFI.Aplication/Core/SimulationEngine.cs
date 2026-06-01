@@ -81,6 +81,44 @@ namespace SimulacionTFI.Aplication.Core
                 }
             }
 
+            var stats1 = _results.Stages.FirstOrDefault(s => s.StageName == "Inspección");
+            var stats2 = _results.Stages.FirstOrDefault(s => s.StageName == "Desarme y Testeo");
+            var stats3 = _results.Stages.FirstOrDefault(s => s.StageName == "Separación");
+            var stats4 = _results.Stages.FirstOrDefault(s => s.StageName == "Clasificación");
+
+            // ETAPA 1: Ingresados - Procesados en Etapa 1
+            if (stats1 != null)
+            {
+                stats1.NotProcessedCount = _results.TotalDevicesArrived - stats1.ProcessedCount;
+            }
+
+            // ETAPA 2: Ingresados (De Etapa 1) - Procesados en Etapa 2
+            if (stats2 != null && stats1 != null)
+            {
+                // Al total procesado de la Etapa 1 le restamos los reacondicionados (que no van a desarme)
+                int ingresaronEtapa2 = stats1.ProcessedCount - _results.RefurbishedCount;
+                stats2.NotProcessedCount = ingresaronEtapa2 - stats2.ProcessedCount;
+            }
+
+            // ETAPA 3: Cada dispositivo procesado en Etapa 2 genera materiales que entran aquí.
+            // Si se procesaron Y dispositivos en la Etapa 2, entraron (Y * 7) componentes.
+            // Para calcularlo en "unidades de dispositivo equivalente": (Componentes Ingresados / 7) - (Componentes Procesados / 7)
+            if (stats3 != null && stats2 != null)
+            {
+                double ingresaronEquivalentesEtapa3 = stats2.ProcessedCount; // Ya que Y2 * 7 / 7 = Y2
+                double procesadosEquivalentesEtapa3 = stats3.ProcessedCount / 7.0;
+
+                // Guardamos la diferencia como un entero aproximado
+                stats3.NotProcessedCount = (int)Math.Round(ingresaronEquivalentesEtapa3 - procesadosEquivalentesEtapa3);
+            }
+
+            // ETAPA 4: Funciona de forma diaria por lote (Kilos), por lo que se mide en kg acumulados en cola
+            if (stats4 != null)
+            {
+                // Al final del último día, lo que no se procesó es lo que quedó físicamente en KgEnCola
+                stats4.NotProcessedCount = (int)Math.Round(stats4.KgEnCola);
+            }
+
             foreach (var stage in _stages)
             {
                 var stats = _results.Stages.FirstOrDefault(s => s.StageName == stage.Name);
@@ -90,6 +128,12 @@ namespace SimulacionTFI.Aplication.Core
                     stats.MaxQueueSize = stage.MaxQueueSize;
                 }
             }
+
+            // Obtenemos cuántos se procesaron en la Etapa 1 (Inspección)
+            var inspeccionEstadistica = _results.Stages.FirstOrDefault(s => s.StageName == "Inspección");
+
+            // Calculamos los que se quedaron sin procesar
+            _results.TotalDevicesNotProcessed = _results.TotalDevicesArrived - (stats1 != null ? stats1.ProcessedCount : 0);
 
             return _results;
         }
@@ -277,8 +321,8 @@ namespace SimulacionTFI.Aplication.Core
                 if (stage.IsAvailable())
                 {
                     stage.StartService(device);
-                    // Inspección: 3 laptops/hora (0.33h) o 2 desktops/hora (0.5h)
-                    double serviceTime = (device.typeDev == DeviceType.Laptop) ? 0.33 : 0.5;
+                    // Inspección: 2 Dispositivos/hora (0.5h)
+                    double serviceTime = 0.5;
                     _calendar.AddEvent(new Event(CurrentTime + (serviceTime / 8.0), EventType.FinDeServicio, stage.Id));
                 }
                 else
@@ -290,8 +334,7 @@ namespace SimulacionTFI.Aplication.Core
 
         private void ScheduleNextArrival()
         {
-            // Según tu contexto: llegan equipos aproximadamente cada 15 días.
-            // Usamos el generador para darle variabilidad a ese número (ej: entre 10 y 20 días)
+            // Usamos el generador para darle variabilidad a ese número 
             double timeToNextArrival = 7.0;
             _calendar.AddEvent(new Event(CurrentTime + timeToNextArrival, EventType.Llegada, 1));
         }
