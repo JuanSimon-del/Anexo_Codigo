@@ -53,7 +53,7 @@ namespace SimulacionTFI.API.Controllers
                 // Esto simula 7 días
                 var result = engine.Run(7.0);
 
-                // --- CORRECCIÓN 1: REDONDEO DE DECIMALES ---
+                // --- REDONDEO DE DECIMALES ---
                 // Redondeamos a 2 decimales los resultados de esta campaña antes de guardarlos
                 result.AluminioRecuperadoKg = Math.Round(result.AluminioRecuperadoKg, 2);
                 result.CobreRecuperadoKg = Math.Round(result.CobreRecuperadoKg, 2);
@@ -61,6 +61,10 @@ namespace SimulacionTFI.API.Controllers
                 result.PlasticoAltaCalidad = Math.Round(result.PlasticoAltaCalidad, 2);
                 result.PlasticoMediaCalidad = Math.Round(result.PlasticoMediaCalidad, 2);
                 result.PlasticoBajaCalidad = Math.Round(result.PlasticoBajaCalidad, 2);
+                result.IngresosMetales = Math.Round(result.IngresosMetales, 2);
+                result.IngresosPlacas = Math.Round(result.IngresosPlacas, 2);
+                result.IngresosPlasticos = Math.Round(result.IngresosPlasticos, 2);
+                result.TotalIngresosGenerados = Math.Round(result.TotalIngresosGenerados, 2);
 
                 foreach (var stage in result.Stages)
                 {
@@ -75,31 +79,39 @@ namespace SimulacionTFI.API.Controllers
                 response.Summary.LaptopsArrived += result.LaptopsArrived;
                 response.Summary.DesktopsArrived += result.DesktopsArrived;
 
-                // --- CORRECCIÓN 2: SUMA AL RESUMEN GLOBAL ---
                 // Sumamos cantidades de equipos
                 response.Summary.TotalDevicesProcessed += result.TotalDevicesProcessed;
                 response.Summary.RefurbishedCount += result.RefurbishedCount;
                 response.Summary.RecycledCount += result.RecycledCount;
+                response.Summary.TotalDevicesNotProcessed += response.Summary.TotalDevicesNotProcessed;
 
-                // ¡AGREGADO! Sumamos los kilos de materiales recuperados al Summary
+                // Sumamos los kilos de materiales recuperados
                 response.Summary.AluminioRecuperadoKg += result.AluminioRecuperadoKg;
                 response.Summary.CobreRecuperadoKg += result.CobreRecuperadoKg;
-                response.Summary.HierroRecuperadoKg += result.HierroRecuperadoKg; 
+                response.Summary.HierroRecuperadoKg += result.HierroRecuperadoKg;
                 response.Summary.PlasticoAltaCalidad += result.PlasticoAltaCalidad;
                 response.Summary.PlasticoMediaCalidad += result.PlasticoMediaCalidad;
                 response.Summary.PlasticoBajaCalidad += result.PlasticoBajaCalidad;
                 response.Summary.CantidadPlacasRecuperadas += result.CantidadPlacasRecuperadas;
+
+                // Sumamos los ingresos de materiales
+                response.Summary.IngresosMetales += result.IngresosMetales;
+                response.Summary.IngresosPlacas += result.IngresosPlacas;
+                response.Summary.IngresosPlasticos += result.IngresosPlasticos;
+                response.Summary.TotalIngresosGenerados += result.TotalIngresosGenerados;
             }
 
-            // Opcional por seguridad: Redondeamos el resumen global al final 
-            // (A veces sumar decimales en programación genera números como 0.000000001)
+            // Por seguridad: Redondeamos el resumen global al final 
             response.Summary.AluminioRecuperadoKg = Math.Round(response.Summary.AluminioRecuperadoKg, 2);
             response.Summary.CobreRecuperadoKg = Math.Round(response.Summary.CobreRecuperadoKg, 2);
             response.Summary.HierroRecuperadoKg = Math.Round(response.Summary.HierroRecuperadoKg, 2);
             response.Summary.PlasticoAltaCalidad = Math.Round(response.Summary.PlasticoAltaCalidad, 2);
             response.Summary.PlasticoMediaCalidad = Math.Round(response.Summary.PlasticoMediaCalidad, 2);
             response.Summary.PlasticoBajaCalidad = Math.Round(response.Summary.PlasticoBajaCalidad, 2);
-            response.Summary.TotalDevicesNotProcessed = response.Summary.TotalDevicesNotProcessed;
+            response.Summary.IngresosMetales = Math.Round(response.Summary.IngresosMetales, 2);
+            response.Summary.IngresosPlacas = Math.Round(response.Summary.IngresosPlacas, 2);
+            response.Summary.IngresosPlasticos = Math.Round(response.Summary.IngresosPlasticos, 2);
+            response.Summary.TotalIngresosGenerados = Math.Round(response.Summary.TotalIngresosGenerados, 2);
 
             return Ok(response);
         }

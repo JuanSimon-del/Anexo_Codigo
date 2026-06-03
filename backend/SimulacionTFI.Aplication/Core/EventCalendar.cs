@@ -12,19 +12,15 @@ namespace SimulacionTFI.Aplication.Core
             _events = new List<Event>();
         }
 
-        /// <summary>
         /// Agrega un nuevo evento al calendario y ordena la lista.
         /// El evento que ocurra más temprano (menor valor en DÍAS) quedará primero.
-        /// </summary>
         public void AddEvent(Event newEvent)
         {
             _events.Add(newEvent);
             _events = _events.OrderBy(e => e.EventTime).ToList();
         }
 
-        /// <summary>
         /// Saca y devuelve el evento más próximo a ocurrir.
-        /// </summary>
         public Event GetNextEvent()
         {
             if (_events.Count == 0)

@@ -31,7 +31,7 @@ namespace SimulacionTFI.Infrastructure.Generations
             return (double)_xActual / _m;
         }
 
-        // Para generar un lote de números (útil si luego quieren exportarlos para validar en Excel)
+        // Para generar un lote de números
         public List<double> GenerarLote(int cantidad)
         {
             var lote = new List<double>(cantidad);

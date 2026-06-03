@@ -14,8 +14,8 @@ namespace SimulacionTFI.Aplication.Core
 
     public class SimulationEngine
     {
-        private readonly IGenerator _generator; // Solo dejamos este
-        private EventCalendar _calendar; //guarda los eventos que deben ocurrir, ordenados por tiempo.
+        private readonly IGenerator _generator; // solo dejamos este
+        private EventCalendar _calendar; // guarda los eventos que deben ocurrir, ordenados por tiempo.
         private List<Stage> _stages;  // lista de etapas del proceso (Inspección, Desarme, Separación, Clasificación)
         private SimulationResults _results;  // guarda los resultados que se devolverán al final.
 
@@ -53,6 +53,13 @@ namespace SimulacionTFI.Aplication.Core
         // SimulationController.cs llama a engine.Run, por lo que duration=7
         public SimulationResults Run(double duration)
         {
+            // Valores pre-establecidos para el calculo de Ingresos por Material
+            double precioHierroKg = 170.0; 
+            double precioAluminioKg = 250.0;
+            double precioCobreKg = 1750.0;
+            double precioPlastico = 20.0;
+            double precioPlacas = 3000.0;
+
             TotalDuration = duration; // Definimos que esta ejecución dura solo una campaña
             CurrentTime = 0;
 
@@ -134,6 +141,14 @@ namespace SimulacionTFI.Aplication.Core
 
             // Calculamos los que se quedaron sin procesar
             _results.TotalDevicesNotProcessed = _results.TotalDevicesArrived - (stats1 != null ? stats1.ProcessedCount : 0);
+
+            // Calculamos el Ingreso Generado por la venta de los materiales
+            _results.IngresosMetales = _results.AluminioRecuperadoKg * precioAluminioKg + _results.HierroRecuperadoKg * precioHierroKg + _results.CobreRecuperadoKg * precioCobreKg;
+            _results.IngresosPlacas = _results.CantidadPlacasRecuperadas * precioPlacas;
+            _results.IngresosPlasticos = (_results.PlasticoAltaCalidad + _results.PlasticoBajaCalidad + _results.PlasticoMediaCalidad) * precioPlastico;
+
+            // Calculamos el Ingreso Total Generado
+            _results.TotalIngresosGenerados = _results.IngresosPlacas + _results.IngresosMetales + _results.IngresosPlasticos;
 
             return _results;
         }

@@ -24,5 +24,9 @@ namespace SimulacionTFI.Aplication.Core
         public double PlasticoMediaCalidad { get; set; }
         public double PlasticoBajaCalidad { get; set; }
         public int CantidadPlacasRecuperadas { get; set; }
+        public double IngresosMetales { get; set; }
+        public double IngresosPlasticos { get; set; }
+        public double IngresosPlacas { get; set; }
+        public double TotalIngresosGenerados { get; set; }
     }
 }

@@ -9,9 +9,12 @@ namespace SimulacionTFI.Domain.Entities
     public enum MaterialType
     {
         Plastic,
+        Metal,
         Aluminum,
         Copper, 
-        Iron
+        Iron,
+        Trash,
+        Recovery
     }
     public class Material
     {

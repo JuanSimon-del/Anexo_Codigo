@@ -23,6 +23,8 @@ function ResumenGeneral() {
         plasticoAltaCalidad: Number(summary.plasticoAltaCalidad ?? summary.PlasticoAltaCalidad ?? 0),
         plasticoMediaCalidad: Number(summary.plasticoMediaCalidad ?? summary.PlasticoMediaCalidad ?? 0),
         plasticoBajaCalidad: Number(summary.plasticoBajaCalidad ?? summary.PlasticoBajaCalidad ?? 0),
+        totalDevicesNotProcessed: Number(summary.totalDevicesNotProcessed ?? summary.totalDevicesNotProcessed ?? 0),
+        totalIngresosGenerados: Number(summary.totalIngresosGenerados ?? summary.totalIngresosGenerados ?? 0),
       });
     }
   }, []);
@@ -69,9 +71,9 @@ function ResumenGeneral() {
           <Col>
             <Card className="text-center h-100 border-success border-2 shadow-sm">
               <Card.Body className="cards">
-                <i className="bi bi-cpu text-warning fs-1"></i>
-                <p className="fs-2">{datos.cantidadPlacasRecuperadas}</p>
-                <h5>Placas Recuperadas</h5>
+                <i className="bi bi-currency-dollar text-warning fs-1"></i>
+                <p className="fs-2">{datos.totalIngresosGenerados}</p> {/* Tengo que cambiar este dato por el calculo */}
+                <h5>Ingresos Generados</h5>
               </Card.Body>
             </Card>
           </Col>
@@ -93,7 +95,7 @@ function ResumenGeneral() {
                     Fe
                   </div>
                 </div>
-                <p className="fs-5">{datos.hierroRecuperadoKg.toFixed(2)} kg</p>
+                <p className="fs-5 mt-auto">{datos.hierroRecuperadoKg.toFixed(2)} kg</p>
               </Card.Body>
             </Card>
           </Col>
@@ -107,7 +109,7 @@ function ResumenGeneral() {
                     Al
                   </div>
                 </div>
-                <p className="fs-5">{datos.aluminioRecuperadoKg.toFixed(2)} kg</p>
+                <p className="fs-5 mt-auto">{datos.aluminioRecuperadoKg.toFixed(2)} kg</p>
               </Card.Body>
             </Card>
           </Col>
@@ -121,7 +123,7 @@ function ResumenGeneral() {
                     Cu
                   </div>
                 </div>
-                <p className="fs-5">{datos.cobreRecuperadoKg.toFixed(2)} kg</p>
+                <p className="fs-5 mt-auto">{datos.cobreRecuperadoKg.toFixed(2)} kg</p>
               </Card.Body>
             </Card>
           </Col>
@@ -134,7 +136,7 @@ function ResumenGeneral() {
                   className="bi bi-cup-straw vasito-plastico"
                   style={{ fontSize: "70px" }}
                 ></i>
-                <p className="fs-5 mt-3">{(datos.plasticoAltaCalidad + datos.plasticoMediaCalidad + datos.plasticoBajaCalidad).toFixed(2)} kg</p>
+                <p className="fs-5 mt-auto">{(datos.plasticoAltaCalidad + datos.plasticoMediaCalidad + datos.plasticoBajaCalidad).toFixed(2)} kg</p>
               </Card.Body>
             </Card>
           </Col>
@@ -142,12 +144,12 @@ function ResumenGeneral() {
           <Col>
             <Card className="text-center h-100 border-success border-2 shadow-sm">
               <Card.Body className="d-flex flex-column align-items-center cards">
-               <h5 className="mt-3">Placas</h5>
+                <h5 className="mt-3">Placas</h5>
                 <i
                   className="bi bi-motherboard my-1"
                   style={{ fontSize: "70px" }}
                 ></i>
-                <p className="fs-5 mt-3">{datos.cantidadPlacasRecuperadas}</p>
+                <p className="fs-5 mt-auto">{datos.cantidadPlacasRecuperadas}</p>
               </Card.Body>
             </Card>
           </Col>
