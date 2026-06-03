@@ -9,7 +9,7 @@ import { runSimulation } from "../services/simulationService";
 
 function Simulacion() {
   const navigate = useNavigate();
-  
+
   const [campanas, setCampanas] = useState(1);
   const [trabajadores, setTrabajadores] = useState([2, 2, 2, 2]); // [etapa1, etapa2, etapa3, etapa4]
   const [cargando, setCargando] = useState(false);
@@ -46,9 +46,9 @@ function Simulacion() {
       </h3>
       <Row className="gx-3 gy-4">
         <Col xs={12} md={6} lg={3} className="d-flex flex-column align-items-center">
-          <DropdownTrabajadores 
-            etapa={0} 
-            valor={trabajadores[0]} 
+          <DropdownTrabajadores
+            etapa={0}
+            valor={trabajadores[0]}
             onChange={(val) => handleActualizarTrabajador(0, val)}
           />
           <div>
@@ -67,9 +67,9 @@ function Simulacion() {
           </div>
         </Col>
         <Col xs={12} md={6} lg={3} className="d-flex flex-column align-items-center">
-          <DropdownTrabajadores 
-            etapa={1} 
-            valor={trabajadores[1]} 
+          <DropdownTrabajadores
+            etapa={1}
+            valor={trabajadores[1]}
             onChange={(val) => handleActualizarTrabajador(1, val)}
           />
           <div>
@@ -88,9 +88,9 @@ function Simulacion() {
           </div>
         </Col>
         <Col xs={12} md={6} lg={3} className="d-flex flex-column align-items-center">
-          <DropdownTrabajadores 
-            etapa={2} 
-            valor={trabajadores[2]} 
+          <DropdownTrabajadores
+            etapa={2}
+            valor={trabajadores[2]}
             onChange={(val) => handleActualizarTrabajador(2, val)}
           />
           <div>
@@ -109,9 +109,9 @@ function Simulacion() {
           </div>
         </Col>
         <Col xs={12} md={6} lg={3} className="d-flex flex-column align-items-center">
-          <DropdownTrabajadores 
-            etapa={3} 
-            valor={trabajadores[3]} 
+          <DropdownTrabajadores
+            etapa={3}
+            valor={trabajadores[3]}
             onChange={(val) => handleActualizarTrabajador(3, val)}
           />
           <div>
@@ -126,36 +126,41 @@ function Simulacion() {
           </div>
         </Col>
       </Row>
-      
+
       {error && (
         <div className="alert alert-danger mt-3 w-100" role="alert">
           {error}
         </div>
       )}
-      
-      <section className="d-flex w-100 my-5 justify-content-center">
-        <input
-          type="number"
-          placeholder="Campañas a simular"
-          value={campanas}
-          onChange={(e) => {
-            const value = Number(e.target.value);
-            setCampanas(Number.isNaN(value) ? 1 : Math.max(1, Math.min(50, value)));
-          }}
-          className="ms-5 px-3 border border-1 rounded-2 input bg-light me-2"
-          min="1"
-          max="50"
-        />
-        <button 
+
+      <section className="d-flex w-100 my-5 justify-content-center align-items-center">
+        <div className="position-relative" style={{ width: "80px" }}>
+          <input
+            type="number"
+            value={campanas}
+            onChange={(e) => {
+              const value = Number(e.target.value);
+              setCampanas(Number.isNaN(value) ? 1 : Math.max(1, Math.min(50, value)));
+            }}
+            className="form-control text-center px-3 bg-light border border-1 rounded-2"
+            style={{ width: "80px", height: "38px" }}
+            min="1"
+            max="50"
+          />
+        </div>
+
+        <button
           className="btn btn-success ms-3 px-5"
           onClick={handleSimular}
           disabled={cargando}
+          style={{ height: "38px" }}
         >
-          {cargando ? "Simulando..." : "Simular"}
+          {cargando ? "Simulando..." : `Simular ${campanas || 1} ${campanas === 1 || !campanas ? "campaña" : "campañas"}`}
         </button>
       </section>
     </Container>
   );
 }
+
 
 export default Simulacion;

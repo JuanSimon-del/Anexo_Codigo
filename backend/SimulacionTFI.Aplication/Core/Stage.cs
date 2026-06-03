@@ -66,7 +66,7 @@ namespace SimulacionTFI.Domain.Entities
             return null;
         }
 
-        // --- MÉTODOS PARA MATERIALES (Lo que te faltaba) ---
+        // --- MÉTODOS PARA MATERIALES ---
         public void AddMaterialToQueue(Material material)
         {
             _materialQueue.Enqueue(material);

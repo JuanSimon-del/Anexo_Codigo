@@ -13,6 +13,7 @@ namespace SimulacionTFI.Aplication.Core
         public int LaptopsArrived { get; set; }
         public int DesktopsArrived { get; set; }
         public int TotalDevicesProcessed { get; set; }
+        public int TotalDevicesNotProcessed { get; set; }
         public int RefurbishedCount { get; set; }
         public int RecycledCount { get; set; }
         public List<StageStats> Stages { get; set; } = new List<StageStats>();
@@ -22,7 +23,10 @@ namespace SimulacionTFI.Aplication.Core
         public double PlasticoAltaCalidad { get; set; }
         public double PlasticoMediaCalidad { get; set; }
         public double PlasticoBajaCalidad { get; set; }
-
         public int CantidadPlacasRecuperadas { get; set; }
+        public double IngresosMetales { get; set; }
+        public double IngresosPlasticos { get; set; }
+        public double IngresosPlacas { get; set; }
+        public double TotalIngresosGenerados { get; set; }
     }
 }
