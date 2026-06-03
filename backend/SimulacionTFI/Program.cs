@@ -44,7 +44,7 @@ namespace SimulacionTFI
             {
                 options.AddPolicy("PermitirNetlify", policy =>
                 {
-                    policy.WithOrigins("https://lighthearted-baklava-370e08.netlify.app/")
+                    policy.WithOrigins("https://lighthearted-baklava-370e08.netlify.app")
                           .AllowAnyHeader()
                           .AllowAnyMethod();
                 });
@@ -78,7 +78,7 @@ namespace SimulacionTFI
             app.MapControllers();
             app.MapRazorPages();
 
-            app.MapFallbackToFile("index.html");
+            //app.MapFallbackToFile("index.html");
 
 
             app.Run();
