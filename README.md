@@ -1,4 +1,4 @@
-# Simulador de Planta de Tratamiento de E-Waste (Backend)
+# Simulador de Planta de Tratamiento de E-Waste
 
 Este proyecto fue desarrollado como parte del **Trabajo Final Integrador (TFI)**, con el objetivo de modelar matemática y lógicamente los procesos de recepción, inspección, desarme y clasificación de computadoras (Laptops y Desktops).
 
