@@ -8,11 +8,11 @@ function DropdownTrabajadores({ etapa, valor, onChange }) {
         <input
           type="text"
           readOnly
-          value={`Trabajadores Etapa ${etapa}: ${valor}`}
+          value={`Trabajadores Etapa ${etapa + 1}: ${valor}`}
           className="ms-5 px-3 border border-1 rounded-2 input bg-light me-2 text-center"
-          style={{ width: "220px", fontWeight: "500" }}
+          style={{ width: "250px", fontWeight: "200" }}
         />
-        
+
         {/* Desplegable para seleccionar la cantidad */}
         <Dropdown onSelect={(e) => onChange(Number(e))}>
           <Dropdown.Toggle
@@ -25,8 +25,8 @@ function DropdownTrabajadores({ etapa, valor, onChange }) {
 
           <Dropdown.Menu>
             {[1, 2, 3, 4, 5].map((num) => (
-              <Dropdown.Item 
-                key={num} 
+              <Dropdown.Item
+                key={num}
                 eventKey={num}
                 active={valor === num}
               >
