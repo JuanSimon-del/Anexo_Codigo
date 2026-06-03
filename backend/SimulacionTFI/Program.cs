@@ -42,10 +42,12 @@ namespace SimulacionTFI
             // Habilitar CORS para que el frontend pueda hacer requests desde localhost
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowFront", policy =>
-                    policy.WithOrigins("http://localhost:5173", "http://localhost:3000")
-                          .AllowAnyMethod()
-                          .AllowAnyHeader());
+                options.AddPolicy("PermitirNetlify", policy =>
+                {
+                    policy.WithOrigins("https://lighthearted-baklava-370e08.netlify.app/")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                });
             });
 
             // Aquí se arma la aplicación con todas las configuraciones anteriores.
@@ -69,7 +71,7 @@ namespace SimulacionTFI
 
             app.UseRouting();
 
-            app.UseCors("AllowFront");
+            app.UseCors("PermitirNetlify");
 
             app.UseAuthorization();
 
@@ -77,6 +79,7 @@ namespace SimulacionTFI
             app.MapRazorPages();
 
             app.MapFallbackToFile("index.html");
+
 
             app.Run();
         }
