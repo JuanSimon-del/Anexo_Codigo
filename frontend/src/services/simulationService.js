@@ -1,5 +1,6 @@
 // Servicio para llamar a la API del backend
-const API_URL = "/api/simulation";
+const BASE_URL = import.meta.env.VITE_API_URL || "";
+const API_URL = `${BASE_URL}api/simulation`;
 
 export const runSimulation = async (totalCampaigns, workersPerStage) => {
   try {
