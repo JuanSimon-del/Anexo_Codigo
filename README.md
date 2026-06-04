@@ -28,6 +28,14 @@ El simulador modela 4 etapas secuenciales de trabajo:
    ```bash
    git clone https://github.com/JuanSimon-del/Anexo_Codigo
 
+2. Ubicarse, mediante consola, en el directorio ./backend/SimulacionTFI 
+
+3. Ejecutar el compilador de C# utilizando el siguiente codigo
+   ```bash
+   dotnet run --SimulacionTFI
+
+4. Abrir el navegador web con el URL brindado por Microsoft Hosting Lifetime. Por defecto, es http://localhost:5000
+
 # Simulación - 2026
 ## Grupo 5 - 4K1 - Integrantes
 * 50428 - Cabrera, Tomas Navarro
